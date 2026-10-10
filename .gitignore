@@ -1,0 +1,30 @@
+# Build (build.ps1)
+build/
+dist/
+bin/
+obj/
+
+# Visual Studio / Rider
+.vs/
+*.user
+*.suo
+.idea/
+.vscode/
+
+# Python (icon/make-icon.py)
+__pycache__/
+*.pyc
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archives and backups
+*.zip
+*.bak
+*.bak.*
+
+# Note: icon/AppIcon.ico and AppIcon.png are committed on purpose,
+# because the build needs them and regenerating them requires Pillow.

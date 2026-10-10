@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- WinExe: no console window when Claude Code launches the hook. -->
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>claude-activity-hook</AssemblyName>
+    <RootNamespace>ClaudeGuardian.Hook</RootNamespace>
+    <AssemblyTitle>Claude Guardian activity hook</AssemblyTitle>
+    <!-- No .exe.config: it would only repeat the .NET Framework version, already in the .exe. -->
+    <GenerateSupportedRuntime>false</GenerateSupportedRuntime>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Shared\*.cs" Link="Shared\%(Filename)%(Extension)" />
+  </ItemGroup>
+
+</Project>

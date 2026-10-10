@@ -1,0 +1,45 @@
+<Project>
+  <!--
+    App and hook version: single source of truth.
+    To release a new version just change these values: they end up in the
+    .exe attributes (Properties › Details in File Explorer) and AppInfo reads them
+    from there, so the version in the menu matches the one shown by Windows.
+  -->
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0.1</FileVersion>
+  </PropertyGroup>
+
+  <!--
+    Notification area icons:
+      three   one icon per state (working, waiting, idle), each with its count, like the macOS label
+      single  one icon showing the most urgent state and its count
+    Override from the command line: .\build.ps1 -SingleIcon (or dotnet build -p:TrayIcons=single).
+  -->
+  <PropertyGroup>
+    <TrayIcons Condition="'$(TrayIcons)' == ''">three</TrayIcons>
+    <DefineConstants Condition="'$(TrayIcons)' == 'single'">$(DefineConstants);SINGLE_TRAY_ICON</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- .NET Framework 4.8 ships with Windows 10 (1903+) and 11: no runtime to install. -->
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Product>Claude Guardian</Product>
+    <Company>Claude Guardian</Company>
+    <Copyright>Copyright (c) 2026 Fabrizio Caldarelli</Copyright>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DebugType>embedded</DebugType>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <!-- No "+<commit>" suffix on the version shown in the menu. -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Allows building for net48 even without Visual Studio (and from macOS/Linux). -->
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+</Project>
